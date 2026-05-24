@@ -116,3 +116,16 @@ func TestFixture_expenseCount(t *testing.T) {
 		t.Fatalf("expected 10 sample expenses, got %d", len(list))
 	}
 }
+
+func TestRegister_assignsViewerRole(t *testing.T) {
+	svc := NewService(stubRepo{})
+	ctx := context.Background()
+
+	u, err := svc.Register(ctx, "testuser", "securepassword")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if u.Role != "viewer" {
+		t.Errorf("expected registered user to have role 'viewer', got %q", u.Role)
+	}
+}
