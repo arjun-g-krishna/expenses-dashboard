@@ -1,0 +1,26 @@
+{
+  "2026-03": {
+    "total_contributions": 7500,
+    "total_expenses": 5049,
+    "remaining_budget": 2451,
+    "contributions_count": 3,
+    "expenses_count": 3,
+    "average_contribution": 2500
+  },
+  "2026-04": {
+    "total_contributions": 9500,
+    "total_expenses": 11150,
+    "remaining_budget": -1650,
+    "contributions_count": 4,
+    "expenses_count": 4,
+    "average_contribution": 2375
+  },
+  "2026-05": {
+    "total_contributions": 11000,
+    "total_expenses": 4500,
+    "remaining_budget": 6500,
+    "contributions_count": 4,
+    "expenses_count": 3,
+    "average_contribution": 2750
+  }
+}

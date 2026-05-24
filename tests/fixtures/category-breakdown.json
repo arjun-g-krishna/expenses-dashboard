@@ -1,0 +1,18 @@
+{
+  "2026-03": [
+    { "category": "Food", "total": 1850 },
+    { "category": "Utilities", "total": 999 },
+    { "category": "Maintenance", "total": 2200 }
+  ],
+  "2026-04": [
+    { "category": "Food", "total": 4200 },
+    { "category": "Event", "total": 3500 },
+    { "category": "Utilities", "total": 2800 },
+    { "category": "Miscellaneous", "total": 650 }
+  ],
+  "2026-05": [
+    { "category": "Food", "total": 2400 },
+    { "category": "Event", "total": 1200 },
+    { "category": "Maintenance", "total": 900 }
+  ]
+}

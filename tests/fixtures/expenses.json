@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Weekly groceries",
+    "amount": 1850,
+    "category": "Food",
+    "expense_date": "2026-03-09T00:00:00Z",
+    "notes": "Shared kitchen stock",
+    "created_at": "2026-03-09T20:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Wi-Fi bill",
+    "amount": 999,
+    "category": "Utilities",
+    "expense_date": "2026-03-15T00:00:00Z",
+    "notes": "March billing cycle",
+    "created_at": "2026-03-15T11:00:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Plumbing repair",
+    "amount": 2200,
+    "category": "Maintenance",
+    "expense_date": "2026-03-22T00:00:00Z",
+    "notes": "Kitchen sink",
+    "created_at": "2026-03-22T15:30:00Z"
+  },
+  {
+    "id": 4,
+    "title": "Team dinner",
+    "amount": 4200,
+    "category": "Food",
+    "expense_date": "2026-04-06T00:00:00Z",
+    "notes": "8 members",
+    "created_at": "2026-04-06T21:00:00Z"
+  },
+  {
+    "id": 5,
+    "title": "Spring meetup venue",
+    "amount": 3500,
+    "category": "Event",
+    "expense_date": "2026-04-12T00:00:00Z",
+    "notes": "Community hall deposit",
+    "created_at": "2026-04-12T13:00:00Z"
+  },
+  {
+    "id": 6,
+    "title": "Electricity",
+    "amount": 2800,
+    "category": "Utilities",
+    "expense_date": "2026-04-18T00:00:00Z",
+    "notes": "",
+    "created_at": "2026-04-18T10:00:00Z"
+  },
+  {
+    "id": 7,
+    "title": "Cleaning supplies",
+    "amount": 650,
+    "category": "Miscellaneous",
+    "expense_date": "2026-04-25T00:00:00Z",
+    "notes": "",
+    "created_at": "2026-04-25T16:20:00Z"
+  },
+  {
+    "id": 8,
+    "title": "Breakfast catering",
+    "amount": 2400,
+    "category": "Food",
+    "expense_date": "2026-05-04T00:00:00Z",
+    "notes": "Sunday session",
+    "created_at": "2026-05-04T08:30:00Z"
+  },
+  {
+    "id": 9,
+    "title": "Projector rental",
+    "amount": 1200,
+    "category": "Event",
+    "expense_date": "2026-05-07T00:00:00Z",
+    "notes": "Presentation night",
+    "created_at": "2026-05-07T14:00:00Z"
+  },
+  {
+    "id": 10,
+    "title": "Water tank service",
+    "amount": 900,
+    "category": "Maintenance",
+    "expense_date": "2026-05-10T00:00:00Z",
+    "notes": "Quarterly service",
+    "created_at": "2026-05-10T11:45:00Z"
+  }
+]
