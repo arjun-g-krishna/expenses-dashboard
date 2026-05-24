@@ -73,8 +73,14 @@ func main() {
 
 // enableCORS wraps a handler with permissive CORS headers for development
 func enableCORS(h http.Handler) http.Handler {
+	// Read allowed origin from env var so production can lock this down.
+	allowed := os.Getenv("ALLOWED_ORIGIN")
+	if allowed == "" {
+		allowed = "*"
+	}
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Origin", allowed)
 		w.Header().Set("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type,Authorization")
 

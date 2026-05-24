@@ -1,10 +1,52 @@
 -- Sample data for local development and manual testing.
 -- Password for admin and viewer: demo1234
 -- Run: ./tests/seed.sh   (or psql with your DSN)
+-- Ensure schema exists (idempotent)
+CREATE TABLE IF NOT EXISTS users (
+  id            SERIAL PRIMARY KEY,
+  username      VARCHAR(100) UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role          VARCHAR(50)  NOT NULL DEFAULT 'admin',
+  created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS contributions (
+  id                SERIAL PRIMARY KEY,
+  contributor_name  VARCHAR(255) NOT NULL,
+  amount            DECIMAL(12,2) NOT NULL,
+  contribution_date DATE NOT NULL,
+  month             VARCHAR(7)   NOT NULL,
+  payment_method    VARCHAR(100),
+  notes             TEXT,
+  created_at        TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS expenses (
+  id           SERIAL PRIMARY KEY,
+  title        VARCHAR(255) NOT NULL,
+  amount       DECIMAL(12,2) NOT NULL,
+  category     VARCHAR(100) NOT NULL,
+  expense_date DATE NOT NULL,
+  notes        TEXT,
+  created_at   TIMESTAMPTZ  NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_contributions_month ON contributions(month);
+CREATE INDEX IF NOT EXISTS idx_expenses_category   ON expenses(category);
+CREATE INDEX IF NOT EXISTS idx_expenses_date       ON expenses(expense_date);
 
 BEGIN;
 
-TRUNCATE TABLE contributions, expenses RESTART IDENTITY CASCADE;
+-- Truncate target tables if they exist (safe, per-table checks)
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM pg_tables WHERE tablename='contributions') THEN
+    EXECUTE 'TRUNCATE TABLE contributions RESTART IDENTITY CASCADE';
+  END IF;
+  IF EXISTS (SELECT 1 FROM pg_tables WHERE tablename='expenses') THEN
+    EXECUTE 'TRUNCATE TABLE expenses RESTART IDENTITY CASCADE';
+  END IF;
+END$$;
 
 INSERT INTO users (username, password_hash, role) VALUES
   ('admin', '$2a$10$rpgANZ8pY46uR45kaO4wbuPyg1mntfXyRukXdB0d6Ovmc3PedUVX6', 'admin'),
