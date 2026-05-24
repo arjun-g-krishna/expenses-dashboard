@@ -1,7 +1,7 @@
 ### Multi-stage Dockerfile for Go API
 # Builds a static binary and runs it in a distroless non-root image
 
-FROM golang:1.25 AS builder
+FROM mirror.gcr.io/library/golang:1.25 AS builder
 WORKDIR /src
 
 # Cache go modules
