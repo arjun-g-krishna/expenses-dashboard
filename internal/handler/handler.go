@@ -29,17 +29,17 @@ func (h *Handler) RegisterRoutes(mux *http.ServeMux) {
 
 	// Contributions (protected)
 	mux.HandleFunc("GET /api/contributions", middleware.Auth(h.GetContributions))
-	mux.HandleFunc("POST /api/contributions", middleware.Auth(h.CreateContribution))
+	mux.HandleFunc("POST /api/contributions", middleware.Auth(middleware.AdminOnly(h.CreateContribution)))
 	mux.HandleFunc("GET /api/contributions/{id}", middleware.Auth(h.GetContribution))
-	mux.HandleFunc("PUT /api/contributions/{id}", middleware.Auth(h.UpdateContribution))
-	mux.HandleFunc("DELETE /api/contributions/{id}", middleware.Auth(h.DeleteContribution))
+	mux.HandleFunc("PUT /api/contributions/{id}", middleware.Auth(middleware.AdminOnly(h.UpdateContribution)))
+	mux.HandleFunc("DELETE /api/contributions/{id}", middleware.Auth(middleware.AdminOnly(h.DeleteContribution)))
 
 	// Expenses (protected)
 	mux.HandleFunc("GET /api/expenses", middleware.Auth(h.GetExpenses))
-	mux.HandleFunc("POST /api/expenses", middleware.Auth(h.CreateExpense))
+	mux.HandleFunc("POST /api/expenses", middleware.Auth(middleware.AdminOnly(h.CreateExpense)))
 	mux.HandleFunc("GET /api/expenses/{id}", middleware.Auth(h.GetExpense))
-	mux.HandleFunc("PUT /api/expenses/{id}", middleware.Auth(h.UpdateExpense))
-	mux.HandleFunc("DELETE /api/expenses/{id}", middleware.Auth(h.DeleteExpense))
+	mux.HandleFunc("PUT /api/expenses/{id}", middleware.Auth(middleware.AdminOnly(h.UpdateExpense)))
+	mux.HandleFunc("DELETE /api/expenses/{id}", middleware.Auth(middleware.AdminOnly(h.DeleteExpense)))
 
 	// Dashboard & Analytics (protected)
 	mux.HandleFunc("GET /api/dashboard", middleware.Auth(h.GetDashboard))

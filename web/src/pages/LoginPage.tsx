@@ -56,7 +56,7 @@ export function LoginPage() {
           </h2>
           <p className="mt-1 text-sm text-muted">
             {showRegister
-              ? 'First user is registered as admin.'
+              ? 'Create a new viewer account.'
               : 'Use your dashboard credentials.'}
           </p>
 
@@ -114,7 +114,7 @@ export function LoginPage() {
           >
             {showRegister
               ? 'Already have an account? Sign in'
-              : 'Need an admin account? Register'}
+              : 'Need an account? Register'}
           </button>
         </form>
       </div>

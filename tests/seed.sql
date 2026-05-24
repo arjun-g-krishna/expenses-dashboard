@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
   id            SERIAL PRIMARY KEY,
   username      VARCHAR(100) UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
-  role          VARCHAR(50)  NOT NULL DEFAULT 'admin',
+  role          VARCHAR(50)  NOT NULL DEFAULT 'viewer',
   created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 

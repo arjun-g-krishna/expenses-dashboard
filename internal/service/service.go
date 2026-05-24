@@ -55,7 +55,7 @@ func (s *Service) Register(ctx context.Context, username, password string) (*mod
 	u := &model.User{
 		Username:     username,
 		PasswordHash: string(hash),
-		Role:         "admin",
+		Role:         "viewer",
 	}
 	if err := s.repo.CreateUser(ctx, u); err != nil {
 		return nil, err

@@ -10,7 +10,7 @@ Requires PostgreSQL. Copy environment variables (see `.env`) and run:
 go run ./cmd/api
 ```
 
-API listens on `:8080`. Register the first user via `POST /api/register` (created with `admin` role). Additional users can be given `viewer` role in the database for read-only access.
+API listens on `:8080`. Registering a new account via the frontend or `POST /api/register` creates a user with the read-only `viewer` role by default. Additional admins can be created by manual database insertion or updates.
 
 ## Frontend
 
