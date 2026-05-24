@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   HandCoins,
@@ -9,38 +9,38 @@ import {
   Sun,
   Menu,
   X,
-} from 'lucide-react'
-import { useState } from 'react'
-import { useAuth } from '../context/AuthContext'
-import { useTheme } from '../context/ThemeContext'
+} from "lucide-react";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 
 const navItems = [
-  { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
-  { to: '/contributions', label: 'Contributions', icon: HandCoins, end: false },
-  { to: '/expenses', label: 'Expenses', icon: Receipt, end: false },
-  { to: '/reports', label: 'Reports', icon: FileSpreadsheet, end: false },
-]
+  { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
+  { to: "/contributions", label: "Contributions", icon: HandCoins, end: false },
+  { to: "/expenses", label: "Expenses", icon: Receipt, end: false },
+  { to: "/reports", label: "Reports", icon: FileSpreadsheet, end: false },
+];
 
 export function Layout() {
-  const { claims, isAdmin, logout } = useAuth()
-  const { theme, toggleTheme } = useTheme()
-  const navigate = useNavigate()
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const { claims, isAdmin, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
+    logout();
+    navigate("/login");
+  };
 
-  const roleLabel = isAdmin ? 'Administrator' : 'Viewer'
+  const roleLabel = isAdmin ? "Administrator" : "Viewer";
 
   return (
     <div className="relative min-h-screen">
       <div className="grain" aria-hidden />
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl">
+      <div className="relative z-10 mx-auto flex min-h-screen">
         <aside
           className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-border bg-surface-elevated/95 p-5 backdrop-blur-md transition-transform lg:static lg:translate-x-0 ${
-            mobileOpen ? 'translate-x-0' : '-translate-x-full'
+            mobileOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           <div className="mb-8">
@@ -58,8 +58,8 @@ export function Layout() {
                 className={({ isActive }) =>
                   `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                     isActive
-                      ? 'bg-accent text-white shadow-sm'
-                      : 'text-muted hover:bg-border/40 hover:text-foreground'
+                      ? "bg-accent text-white shadow-sm"
+                      : "text-muted hover:bg-border/40 hover:text-foreground"
                   }`
                 }
               >
@@ -79,8 +79,8 @@ export function Layout() {
               onClick={toggleTheme}
               className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-muted transition hover:bg-border/40 hover:text-foreground"
             >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === "dark" ? "Light mode" : "Dark mode"}
             </button>
             <button
               type="button"
@@ -108,7 +108,7 @@ export function Layout() {
               type="button"
               className="rounded-lg p-2 text-muted lg:hidden"
               onClick={() => setMobileOpen((o) => !o)}
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -125,5 +125,5 @@ export function Layout() {
         </div>
       </div>
     </div>
-  )
+  );
 }
