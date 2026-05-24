@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-expenses}
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data-dev:/var/lib/postgresql/data
       - ./tests/00_schema.sql:/docker-entrypoint-initdb.d/00_schema.sql:ro
       - ./tests/seed.sql:/docker-entrypoint-initdb.d/01_seed.sql:ro
     healthcheck:
@@ -19,7 +19,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: cmd/api/Dockerfile
+      dockerfile: cmd/api/Dockerfile.dev
     depends_on:
       db:
         condition: service_healthy
@@ -30,22 +30,32 @@ services:
       DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       DB_NAME: ${POSTGRES_DB:-expenses}
       DB_SSLMODE: disable
-      ALLOWED_ORIGIN: ${ALLOWED_ORIGIN:-http://localhost}
+      ALLOWED_ORIGIN: http://localhost:${FRONTEND_PORT:-5173}
+    volumes:
+      - .:/workspace
+      - go-mod-cache:/go/pkg/mod
+      - go-build-cache:/root/.cache/go-build
     ports:
       - "${API_PORT:-8080}:8080"
     restart: unless-stopped
 
   frontend:
-    build:
-      context: .
-      dockerfile: web/Dockerfile
+    image: node:22-alpine
+    working_dir: /workspace/web
+    command: sh -c "if [ ! -x node_modules/.bin/vite ]; then npm install; fi && npm run dev -- --host 0.0.0.0"
     depends_on:
       - api
     environment:
-      VITE_API_URL: ${VITE_API_URL:-http://localhost:${API_PORT:-8080}}
+      VITE_API_URL: http://localhost:${API_PORT:-8080}
+    volumes:
+      - .:/workspace
+      - web-node-modules:/workspace/web/node_modules
     ports:
-      - "${FRONTEND_PORT:-8000}:80"
+      - "${FRONTEND_PORT:-5173}:5173"
     restart: unless-stopped
 
 volumes:
-  db-data:
+  db-data-dev:
+  go-mod-cache:
+  go-build-cache:
+  web-node-modules:

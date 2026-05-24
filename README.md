@@ -52,10 +52,19 @@ See [tests/README.md](tests/README.md). Quick seed:
 Login: `admin` / `demo1234` or `viewer` / `demo1234`.
 
 ## Start the containers
-```
+
+### Production-style compose
+
+```bash
 docker compose up --build
 ```
-## Run in detached mode (background)
+
+### Development compose
+
+Development compose with bind mounts and container-side dev servers:
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
 ```
-docker compose up --build -d
-```
+
+The API container uses Air for Go hot reload, so backend edits restart automatically.
