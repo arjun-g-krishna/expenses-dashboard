@@ -19,7 +19,8 @@ cd web
 npm install
 npm run dev
 ```
-<img width="2992" height="1934" alt="Screenshot 2026-05-24 at 6 34 02 PM" src="https://github.com/user-attachments/assets/d8369162-007b-47f8-b30a-0acb761c828c" />
+<img width="1608" height="1050" alt="image" src="https://github.com/user-attachments/assets/818ecf77-aa45-431a-89ff-fd139fd3fc97" />
+
 
 Open http://localhost:5173. The dev server proxies `/api` to the Go API on port 8080.
 
