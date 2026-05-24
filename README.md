@@ -50,3 +50,12 @@ See [tests/README.md](tests/README.md). Quick seed:
 ```
 
 Login: `admin` / `demo1234` or `viewer` / `demo1234`.
+
+## Start the containers
+```
+docker compose up --build
+```
+## Run in detached mode (background)
+```
+docker compose up --build -d
+```
