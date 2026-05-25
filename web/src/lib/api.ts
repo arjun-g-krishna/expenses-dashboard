@@ -33,8 +33,10 @@ async function request<T>(
 
   if (res.status === 401) {
     clearToken()
-    window.location.href = '/login'
-    throw new ApiError(401, 'Session expired')
+    if (path !== '/api/login' && path !== '/api/register') {
+      window.location.href = '/login'
+      throw new ApiError(401, 'Session expired')
+    }
   }
 
   if (res.status === 204) return undefined as T
